@@ -10,6 +10,8 @@ RUN chown elasticsearch:elasticsearch config/elasticsearch.yml
 USER elasticsearch
 WORKDIR /usr/share/elasticsearch
 
-RUN bin/elasticsearch-plugin install discovery-ec2
-RUN bin/elasticsearch-plugin install repository-s3
+RUN yes | bin/elasticsearch-plugin install discovery-ec2
+
+RUN yes | bin/elasticsearch-plugin install repository-s3
+
 RUN sed -e '/^-Xm/s/^/#/g' -i /usr/share/elasticsearch/config/jvm.options
